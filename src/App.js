@@ -12,25 +12,45 @@ class App extends Component {
     super(props);
 
     this.app = firebase.initializeApp(DB_CONFIG);
-    this.db = this.app.database().ref().child('HOUSE_QUARANTINE');
-
-    this.clickButton = this.clickButton.bind(this);
+    this.db = this.app.database().ref('HOUSE_QUARANTINE/DEV').child('USERS');
+    // const adaRef = this.db.child('USERS');
+    // const path = adaRef.toString();
+    console.log(this.db);
 
     this.state = {
-      notes: []
+      users: []
     }
   }
 
-  clickButton() {
-    console.log(this.db);
+  componentDidMount() {
+    this.db.on('value', snapshot => {
+      console.log(snapshot);
+      this.setState({
+        users: snapshot.val()
+      });
+    });
+
+    // this.db.on('child_added', snap => {
+    //   previousNotes.push({
+    //     id: snap.key,
+    //     noteContent: snap.val().noteContent,
+    // })
   }
 
   render() {
     return (
       <div className="wrapper">
         <div className="map"><MapContainer /></div>
-        <div className="users"><Users /></div>
-        <button>peps</button>
+        <div className="users"><Users />
+        {
+            // this.state.users.map((user) => {
+            //   console.log(user);
+            //   return (
+            //     <UserInfo />
+            //   )
+            // })
+        }
+        </div>
       </div>
     );
   }
