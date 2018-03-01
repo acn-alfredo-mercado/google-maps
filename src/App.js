@@ -12,9 +12,7 @@ class App extends Component {
     super(props);
 
     this.app = firebase.initializeApp(DB_CONFIG);
-    this.db = this.app.database().ref('HOUSE_QUARANTINE/DEV').child('USERS');
-    // const adaRef = this.db.child('USERS');
-    // const path = adaRef.toString();
+    this.db = this.app.database().ref('HOUSE_QUARANTINE/DEV/USERS');
     console.log(this.db);
 
     this.state = {
@@ -22,33 +20,35 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.db.on('value', snapshot => {
-      console.log(snapshot);
+      var mgaTao = [];
+      snapshot.forEach((data) => {
+        var tao = data.val();
+        mgaTao.push(tao);
+      })
+
       this.setState({
-        users: snapshot.val()
+        users: mgaTao
       });
+      console.log(this.state.users);
+      
     });
 
-    // this.db.on('child_added', snap => {
-    //   previousNotes.push({
-    //     id: snap.key,
-    //     noteContent: snap.val().noteContent,
-    // })
   }
 
   render() {
     return (
       <div className="wrapper">
         <div className="map"><MapContainer /></div>
-        <div className="users"><Users />
+        <div className="users"><h4>Cases</h4>
         {
-            // this.state.users.map((user) => {
-            //   console.log(user);
-            //   return (
-            //     <UserInfo />
-            //   )
-            // })
+            this.state.users.map((user) => {
+              console.log(user);
+              return (
+                 <div><Users name={user.name} disease={user.profile.disease}/></div>
+              )
+            })
         }
         </div>
       </div>
