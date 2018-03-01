@@ -52,7 +52,8 @@ class App extends Component {
                     picture={user.profile.picture}
                     disease={user.profile.disease}
                     locationName={user.location.location_name}
-                    connectionStatus={user.device_status.connection_status}/>
+                    connectionStatus={user.device_status.connection_status}
+                    batteryLevel={user.device_status.battery_level}/>
                 </div>
             )
           })

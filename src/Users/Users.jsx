@@ -17,8 +17,9 @@ class Users extends Component {
     this.wifiStrength = this.props.wifiStrength;
 
   }
-  
+
   render() {
+    const isBatteryLow = (this.batteryLevel < 20);
     return (
       <div class="row">
         <div class="col-7">
@@ -27,16 +28,24 @@ class Users extends Component {
               <div>
                 <div class="content">
                   <img src={this.picture} />
-                  <span>{this.name}</span><br/>
+                  <span>{this.name}</span><br />
                   <span>{this.disease}, {this.locationName}</span>
-                </div>​
+                </div>
               </div>
-              <hr/>
+              <hr />
               <p>Details</p>
             </div>
-            <hr/>
-            {this.connectionStatus ? <div><img src={require('../assets/connected-icon.png')}/>Connected</div> 
-              : <div><img src={require('../assets/not-connected-icon.png')}/>Not Connected</div>}
+            <hr />
+            {
+              this.connectionStatus ?
+                <span><img src={require('../assets/connected-icon.png')} />Connected</span>
+              : <span><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>
+            }
+            {
+              isBatteryLow ? 
+                <span><img src={require('../assets/lobatt-icon.png')} />{this.batteryLevel}%</span>
+              : <span><img src={require('../assets/batt-icon.png')} />{this.batteryLevel}%</span>
+            }
           </div>
         </div>
       </div>
