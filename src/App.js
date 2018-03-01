@@ -13,7 +13,6 @@ class App extends Component {
 
     this.app = firebase.initializeApp(DB_CONFIG);
     this.db = this.app.database().ref('HOUSE_QUARANTINE/DEV/USERS');
-    console.log(this.db);
 
     this.state = {
       users: []
@@ -32,29 +31,30 @@ class App extends Component {
         users: mgaTao
       });
       console.log(this.state.users);
-      
     });
-
   }
 
   render() {
     return (
       <div className="wrapper">
-        <div className="map"><MapContainer /></div>
-        <div className="users"><h4>Cases</h4>
+        <div className="map">
+          <MapContainer />
+        </div>
+        <div className="users">
+          <h4>Cases</h4>
         {
-            this.state.users.map((user) => {
-              console.log(user);
-              return (
-                 <div className="userList">
-                    <Users 
-                      name={user.name}
-                      picture={user.profile.picture}
-                      disease={user.profile.disease}
-                      locationName={user.location.location_name}/>
-                  </div>
-              )
-            })
+          this.state.users.map((user) => {
+            console.log(user);
+            return (
+                <div className="userList">
+                  <Users 
+                    name={user.name}
+                    picture={user.profile.picture}
+                    disease={user.profile.disease}
+                    locationName={user.location.location_name}/>
+                </div>
+            )
+          })
         }
         </div>
       </div>
