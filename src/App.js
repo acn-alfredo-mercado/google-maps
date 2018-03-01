@@ -46,7 +46,13 @@ class App extends Component {
             this.state.users.map((user) => {
               console.log(user);
               return (
-                 <div><Users name={user.name} disease={user.profile.disease}/></div>
+                 <div className="userList">
+                    <Users 
+                      name={user.name}
+                      picture={user.profile.picture}
+                      disease={user.profile.disease}
+                      locationName={user.location.location_name}/>
+                  </div>
               )
             })
         }

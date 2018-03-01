@@ -19,8 +19,8 @@
   right:0;
   width:25%;
   overflow-y: scroll;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 h4 {
@@ -30,4 +30,8 @@ h4 {
   font-size: 26px;
   margin-right: 10px;
   color: #ffffff;
+}
+
+.userList {
+  cursor: pointer;
 }

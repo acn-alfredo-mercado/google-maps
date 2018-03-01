@@ -6,9 +6,11 @@ class Users extends Component {
     super(props);
 
     this.name = this.props.name;
+    this.picture = this.props.picture;
     this.disease = this.props.disease;
     this.location = this.props.location;
     this.deviceStatus = this.props.deviceStatus;
+    this.locationName = this.props.locationName;
   }
   render() {
     return (
@@ -16,12 +18,18 @@ class Users extends Component {
         <div class="col-7">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <div class="inline"><span class="card-text"><img src=''/>{this.name}</span><br/><span>{this.disease}</span></div>
+              <div>
+                <div class="content">
+                  <img src={this.picture} />
+                  <span>{this.name}</span><br/>
+                  <span>{this.disease}, {this.locationName}</span>
+                </div>​
+              </div>
+              <hr/>
               <p>Details</p>
             </div>
-            <div class="card-action">
+            <hr/>
               <p>battery status</p>
-            </div>
           </div>
         </div>
       </div>
