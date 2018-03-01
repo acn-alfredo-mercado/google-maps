@@ -11,7 +11,13 @@ class Users extends Component {
     this.location = this.props.location;
     this.deviceStatus = this.props.deviceStatus;
     this.locationName = this.props.locationName;
+
+    this.batteryLevel = this.props.batteryLevel;
+    this.connectionStatus = this.props.connectionStatus;
+    this.wifiStrength = this.props.wifiStrength;
+
   }
+  
   render() {
     return (
       <div class="row">
@@ -29,7 +35,8 @@ class Users extends Component {
               <p>Details</p>
             </div>
             <hr/>
-              <p>battery status</p>
+            {this.connectionStatus ? <div><img src={require('../assets/connected-icon.png')}/>Connected</div> 
+              : <div><img src={require('../assets/not-connected-icon.png')}/>Not Connected</div>}
           </div>
         </div>
       </div>
