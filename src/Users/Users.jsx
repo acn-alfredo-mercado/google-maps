@@ -12,6 +12,11 @@ class Users extends Component {
     this.deviceStatus = this.props.deviceStatus;
     this.locationName = this.props.locationName;
 
+    this.delinquent = this.props.delinquent;
+    this.faceCheck = this.props.faceCheck;
+    this.nfc = this.props.nfc;
+    this.proximity = this.props.proximity;
+
     this.batteryLevel = this.props.batteryLevel;
     this.connectionStatus = this.props.connectionStatus;
     this.wifiStrength = this.props.wifiStrength;
@@ -31,19 +36,35 @@ class Users extends Component {
                   <span>{this.disease}, {this.locationName}</span>
                 </div>
               </div>
+              <div>
               <hr />
-              <p>
-                <span><i class="material-icons" style={{ color: 'red' }}>place</i>Delinquency</span><br />
-                <span><i class="material-icons" style={{ color: 'yellow' }}>place</i>Wearable</span><br />
-                <span><i class="material-icons" style={{ color: 'yellow' }}>place</i>Device Kit</span><br />
-                <span><i class="material-icons " style={{ color: 'blue' }}>warning</i>Proximity</span>
-              </p>
-              <hr />
-              <p>
+              {
+                !this.delinquent ?
+                  ``
+                  : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br/></span>
+              }
+                <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>Wearable</span><br />
+                <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>Device Kit</span><br />
+              {
+                !!this.proximity ?
+                <span><i class="material-icons " style={{ color: '#4caf50' }}>place</i>Within Proximity</span>
+                : ``
+              }
+              </div>
+              {
+                !this.faceCheck ?
+                <div>
+                <hr />
                 Verification Failed<br />
-                <span><img src={require('../assets/face-icon.png')} />Face Check Failed</span><br />
-                <span><img src={require('../assets/nfc-icon.png')} />NFC Check Failed</span>
-              </p>
+                  <span style={{ paddingLeft: '2em' }}><img src={require('../assets/face-icon.png')} />Face Check Failed<br /></span>
+                </div>
+                  : ``
+              }
+                  {!this.nfc ?
+                    <span style={{ paddingLeft: '2em' }}><img src={require('../assets/nfc-icon.png')} />NFC Check Failed</span>
+                    : ``
+                  }
+
               <hr />
               {
                 this.connectionStatus ?

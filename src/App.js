@@ -52,9 +52,13 @@ class App extends Component {
                     name={user.name}
                     picture={user.profile.picture}
                     disease={user.profile.disease}
+                    delinquent={user.delinquency.delinquent}
                     locationName={user.location.location_name}
+                    proximity={user.compliant.proximity}
+                    faceCheck={user.attempts.face_check}
+                    nfc={user.attempts.nfc}
                     connectionStatus={user.device_status.connection_status}
-                    batteryLevel={user.device_status.battery_level} />
+                    batteryLevel={user.device_status.battery_level}/>
                 </div>
               )
             })
