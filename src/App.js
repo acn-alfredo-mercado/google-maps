@@ -32,7 +32,7 @@ class App extends Component {
         users: users
       });
       console.log(this.state.users);
-     
+
     });
   }
 
@@ -44,21 +44,21 @@ class App extends Component {
         </div>
         <div className="users">
           <h4>Cases</h4>
-        {
-          this.state.users.map((user) => {
-            return (
+          {
+            this.state.users.map((user) => {
+              return (
                 <div className="userList">
-                  <Users 
+                  <Users
                     name={user.name}
                     picture={user.profile.picture}
                     disease={user.profile.disease}
                     locationName={user.location.location_name}
                     connectionStatus={user.device_status.connection_status}
-                    batteryLevel={user.device_status.battery_level}/>
+                    batteryLevel={user.device_status.battery_level} />
                 </div>
-            )
-          })
-        }
+              )
+            })
+          }
         </div>
       </div>
     );

@@ -27,3 +27,8 @@ h4 {
 .content span {
     font-size: 15px;
 }
+
+span img {
+    height: 15px;
+    width: 15px;
+}

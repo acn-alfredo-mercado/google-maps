@@ -47,10 +47,10 @@ class MapContainer extends Component {
         }}>
         {
           this.props.users.map(user => (
-          <Marker
-            onClick={this.onMarkerClick}
-            position={{ lat: user.location.latitude, lng: user.location.longitude }}
-          />
+            <Marker
+              onClick={this.onMarkerClick}
+              position={{ lat: user.location.latitude, lng: user.location.longitude }}
+            />
           ))
         }
         <InfoWindow
