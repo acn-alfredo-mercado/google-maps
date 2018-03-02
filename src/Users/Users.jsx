@@ -37,34 +37,30 @@ class Users extends Component {
                 </div>
               </div>
               <div>
-              <hr />
-              {
-                !this.delinquent ?
-                  ``
-                  : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br/></span>
-              }
+                <hr />
+                {
+                  !this.delinquent ?
+                    ``
+                    : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br /></span>
+                }
                 <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>Wearable</span><br />
                 <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>Device Kit</span><br />
-              {
-                !!this.proximity ?
-                <span><i class="material-icons " style={{ color: '#4caf50' }}>place</i>Within Proximity</span>
-                : ``
-              }
+                {
+                  !!this.proximity ?
+                    <span><i class="material-icons " style={{ color: '#4caf50' }}>place</i>Within Proximity</span>
+                    : ``
+                }
               </div>
               {
-                !this.faceCheck ?
-                <div>
-                <hr />
-                Verification Failed<br />
-                  <span style={{ paddingLeft: '2em' }}><img src={require('../assets/face-icon.png')} />Face Check Failed<br /></span>
-                </div>
+                !this.faceCheck || !this.nfc ?
+                  <div>
+                    <hr />
+                    Verification Failed<br />
+                    <span style={{ paddingLeft: '2em' }}><img src={require('../assets/face-icon.png')} />Face Check Failed<br /></span>
+                    <span style={{ paddingLeft: '2em' }}><img src={require('../assets/nfc-icon.png')} />NFC Check Failed</span>
+                  </div>
                   : ``
               }
-                  {!this.nfc ?
-                    <span style={{ paddingLeft: '2em' }}><img src={require('../assets/nfc-icon.png')} />NFC Check Failed</span>
-                    : ``
-                  }
-
               <hr />
               {
                 this.connectionStatus ?
