@@ -28,7 +28,7 @@ class Users extends Component {
               <div>
                 <div class="content">
                   <img src={this.picture} />
-                  <span>{this.name}</span><br />
+                  <span>{this.name}</span><i class="material-icons">place</i><br />
                   <span>{this.disease}, {this.locationName}</span>
                 </div>
               </div>
