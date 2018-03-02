@@ -17,20 +17,22 @@ class App extends Component {
     this.state = {
       users: []
     }
+
   }
 
   componentWillMount() {
     this.db.on('value', snapshot => {
-      var mgaTao = [];
+      var users = [];
       snapshot.forEach((data) => {
-        var tao = data.val();
-        mgaTao.push(tao);
+        var user = data.val();
+        users.push(user);
       })
 
       this.setState({
-        users: mgaTao
+        users: users
       });
       console.log(this.state.users);
+     
     });
   }
 
@@ -38,13 +40,12 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="map">
-          <MapContainer />
+          <MapContainer {...this.state} />
         </div>
         <div className="users">
           <h4>Cases</h4>
         {
           this.state.users.map((user) => {
-            console.log(user);
             return (
                 <div className="userList">
                   <Users 

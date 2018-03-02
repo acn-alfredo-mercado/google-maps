@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './MapContainer.css';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import Users from '../Users/Users';
 
 class MapContainer extends Component {
   constructor(props) {
@@ -10,6 +11,9 @@ class MapContainer extends Component {
       activeMarker: {},
       selectedPlace: {},
     }
+
+    this.latitude = this.props.latitude;
+    this.longitude = this.props.longitude;
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
@@ -41,32 +45,18 @@ class MapContainer extends Component {
           lat: 1.294143,
           lng: 103.853278
         }}>
-        <Marker onClick={this.onMarkerClick}
-          name={'pre'} />
-
+        {
+          this.props.users.map(user => (
+          <Marker
+            onClick={this.onMarkerClick}
+            position={{ lat: user.location.latitude, lng: user.location.longitude }}
+          />
+          ))
+        }
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
-          <div class="row">
-            <div class="col-7">
-              <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                  <div>
-                    <h4>{this.state.selectedPlace.name}</h4>
-                    <div class="content">
-                      <img src={this.picture} />
-                      <span>{this.name}</span><br />
-                      <span>{this.disease}, {this.locationName}</span>
-                    </div>
-                  </div>
-                  <hr />
-                  <p>Details</p>
-                </div>
-                <hr />
-                <p>battery status</p>
-              </div>
-            </div>
-          </div>
+          <Users />
         </InfoWindow>
       </Map>
     )
