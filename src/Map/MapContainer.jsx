@@ -73,17 +73,16 @@ class MapContainer extends Component {
         }>
         {
           this.props.users.map((user) => {
-            const iconStatus = user.compliant.face_check
-            const iconStatus1 = user.compliant.nfc;
-            const iconStatus2 = user.compliant.proximity;
-            const iconStatus3 = user.compliant.polling;
+            const isFaceCheck = user.compliant.face_check
+            const isNfc= user.compliant.nfc;
+            const isProximity= user.compliant.proximity;
+            const isPolling = user.compliant.polling;
             return (
               <Marker
               onClick={this.onMarkerClick}
               position={{ lat: user.location.latitude, lng: user.location.longitude }}
               icon={{ 
-                // url: require("../assets/green-status-icon.png")
-                url: require("../assets/" + this.iconStatus(iconStatus,iconStatus1,iconStatus2,iconStatus3))
+                url: require("../assets/" + this.iconStatus(isFaceCheck,isNfc,isProximity,isPolling))
               }}
             />
             )
