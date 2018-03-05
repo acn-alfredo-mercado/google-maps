@@ -50,6 +50,8 @@ class MapContainer extends Component {
             <Marker
               onClick={this.onMarkerClick}
               position={{ lat: user.location.latitude, lng: user.location.longitude }}
+              icon={{
+                url: require("../assets/green-status-icon.png")}}
             />
           ))
         }

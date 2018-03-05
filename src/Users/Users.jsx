@@ -17,7 +17,7 @@ class Users extends Component {
 
     this.deviceProximity = this.props.deviceProximity;
     this.deviceType = this.props.deviceType;
-    this.deviceTimestamp = this.props.deviceTimestamp;
+    this.deviceTimestamp = new Date(this.props.deviceTimestamp * 1000);
 
     this.faceCheck = this.props.faceCheck;
     this.nfc = this.props.nfc;
@@ -26,11 +26,18 @@ class Users extends Component {
     this.batteryLevel = this.props.batteryLevel;
     this.connectionStatus = this.props.connectionStatus;
     this.wifiStrength = this.props.wifiStrength;
+
+    this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
+  }
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   render() {
     const isBatteryLow = (this.batteryLevel < 20);
     const dateString = this.timeStamp.toLocaleTimeString();
+    const dateDevice = this.timeStamp.toLocaleDateString();
     return (
       <div class="row">
         <div class="col-7">
@@ -59,11 +66,13 @@ class Users extends Component {
                       console.log(device[element])
                     })
                   ))
-                } */
-                }
-                {this.props.devices.map(device => {
-                  <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type}<br /></span> //returns 14 objects
-                  })
+                }  */}
+                {
+                  this.props.devices.map((device, index) => (
+                    <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type} {index} Not Updating<br />
+                     {dateString} <br/>
+                    </span>
+                  ))
                 }
                 {
                   !!this.proximity ?
