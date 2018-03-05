@@ -33,12 +33,12 @@ class App extends Component {
             // The ID is the key
             // console.log(key);
             // The Object is device[key]
-            devices.push(device[key]); // returns all 14 devices
+            // devices.push(device[key]); // returns all 14 devices
             // console.log(device[key]);
           });
         }
         users.push(user);
-        // devices.push(device); //returns 9 items
+        devices.push(device); //returns 9 items
       })
 
       this.setState({

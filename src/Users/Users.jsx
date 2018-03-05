@@ -70,8 +70,8 @@ class Users extends Component {
                 {
                   this.props.devices.map((device, index) => (
                     <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type} {index} Not Updating<br />
-                     {dateString} <br/>
-                    </span>
+                     {dateString} <br/> 
+                    </span>                   
                   ))
                 }
                 {
