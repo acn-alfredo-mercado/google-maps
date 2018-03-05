@@ -71,7 +71,12 @@ class App extends Component {
                     delinquent={user.delinquency.delinquent}
                     timeStamp={user.delinquency.timestamp}
                     locationName={user.location.location_name}
+
                     proximity={user.compliant.proximity}
+                    isFaceCheck={user.compliant.face_check}
+                    isNfc={user.compliant.nfc}
+                    isPolling={user.compliant.polling}
+
                     faceCheck={user.attempts.face_check}
                     nfc={user.attempts.nfc}
                     connectionStatus={user.device_status.connection_status}

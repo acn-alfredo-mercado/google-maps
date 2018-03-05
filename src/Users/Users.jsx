@@ -21,15 +21,21 @@ class Users extends Component {
 
     this.faceCheck = this.props.faceCheck;
     this.nfc = this.props.nfc;
+
     this.proximity = this.props.proximity;
+    this.isFaceCheck = this.props.isFaceCheck;
+    this.isNfc = this.props.isNfc;
+    this.isPolling = this.props.isPolling;
 
     this.batteryLevel = this.props.batteryLevel;
     this.connectionStatus = this.props.connectionStatus;
     this.wifiStrength = this.props.wifiStrength;
 
+    // functions
     this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
     this.batteryStatus = this.batteryStatus.bind(this);
     this.wifiConnectionStatus = this.wifiConnectionStatus.bind(this);
+    this.proximityStatus = this.proximityStatus.bind(this);
   }
 
   capitalizeFirstLetter(string) {
@@ -58,6 +64,14 @@ class Users extends Component {
       return true;
     } else {
       return false;
+    }
+  }
+
+  proximityStatus(faceCheck, nfc, proximity, polling) {
+    if (faceCheck === true && nfc === true && proximity === true && polling === true) {
+      return <span><i class="material-icons " style={{ color: '#4caf50' }}>place</i>Within Proximity</span>;
+    } else if (faceCheck === false && nfc === false && proximity === false && polling === true){
+     return <span><i class="material-icons " style={{ color: '#e34343' }}>place</i>Outside Proximity</span>;;
     }
   }
 
@@ -93,18 +107,14 @@ class Users extends Component {
                     })
                   ))
                 }  */}
-                {
+                {/* {
                   this.props.devices.map((device, index) => (
                     <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type} {index} Not Updating<br />
                       {dateString} <br />
                     </span>
                   ))
-                }
-                {
-                  !!this.proximity ?
-                    <span><i class="material-icons " style={{ color: '#4caf50' }}>place</i>Within Proximity</span>
-                    : ``
-                }
+                } */}
+                { this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling) }
               </div>
               {
                 this.verificationStatus() ?
