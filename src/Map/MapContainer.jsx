@@ -46,11 +46,6 @@ class MapContainer extends Component {
     }
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   this.setState({
-  //     currentLocation: this.props.center
-  //   })
-  //  }
   iconStatus(faceCheck, nfc, proximity, polling) {
     if (faceCheck === false && nfc === false && proximity === true && polling === true) {
       return "blue-status-icon.png";

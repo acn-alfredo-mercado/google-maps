@@ -28,14 +28,32 @@ class Users extends Component {
     this.wifiStrength = this.props.wifiStrength;
 
     this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
+    this.batteryStatus = this.batteryStatus.bind(this);
   }
 
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  render() {
+  batteryStatus() {
     const isBatteryLow = (this.batteryLevel < 20);
+    if (isBatteryLow) {
+      return "lobatt-icon.png";
+    } else {
+      return "batt-icon.png";
+    }
+  }
+
+  connectionStatus() {
+    if (this.connectionStatus) {
+      return "connected-icon.png";
+    } else {
+      return "not-connected-icon.png";
+    }
+  }
+  
+
+  render() { 
     const dateString = this.timeStamp.toLocaleTimeString();
     const dateDevice = this.timeStamp.toLocaleDateString();
     return (
@@ -97,9 +115,7 @@ class Users extends Component {
                   : <span><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>
               }
               {
-                isBatteryLow ?
-                  <span><img src={require('../assets/lobatt-icon.png')} />{this.batteryLevel}%</span>
-                  : <span><img src={require('../assets/batt-icon.png')} />{this.batteryLevel}%</span>
+               <span><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span>
               }
             </div>
           </div>
