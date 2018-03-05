@@ -69,9 +69,9 @@ class Users extends Component {
 
   proximityStatus(faceCheck, nfc, proximity, polling) {
     if (faceCheck === true && nfc === true && proximity === true && polling === true) {
-      return <span><i class="material-icons " style={{ color: '#4caf50' }}>place</i>Within Proximity</span>;
+      return <span><i class="material-icons " style={{ color: '#4caf50' }}>location_on</i>Within Proximity</span>;
     } else if (faceCheck === false && nfc === false && proximity === false && polling === true){
-     return <span><i class="material-icons " style={{ color: '#e34343' }}>place</i>Outside Proximity</span>;;
+     return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity</span>;;
     }
   }
 
@@ -86,8 +86,8 @@ class Users extends Component {
               <div>
                 <div class="content">
                   <img src={this.picture} />
-                  <span>{this.name}<br /></span>
-                  <span>{this.disease}, {this.locationName}</span>
+                  <p className="title">{this.name}<br /></p>
+                  <p className="subtitle">{this.disease}, {this.locationName}</p>
                 </div>
               </div>
               <div>
@@ -114,7 +114,7 @@ class Users extends Component {
                     </span>
                   ))
                 } */}
-                { this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling) }
+              { this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling) }
               </div>
               {
                 this.verificationStatus() ?

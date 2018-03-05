@@ -23,7 +23,7 @@
   padding-right: 15px;
 }
 
-h5 {
+h4 {
   margin: .3rem;
   font-weight: 400;
   letter-spacing: .5px;
@@ -34,4 +34,5 @@ h5 {
 
 .userList {
   cursor: pointer;
+  border-radius: 25%;
 }

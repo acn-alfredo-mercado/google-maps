@@ -58,7 +58,7 @@ class App extends Component {
           <MapContainer {...this.state} />
         </div>
         <div className="users">
-          <h5>Cases</h5>
+          <h4>Cases</h4>
           {
             this.state.users.map((user, index) => {
               return (
