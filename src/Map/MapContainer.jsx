@@ -52,9 +52,9 @@ class MapContainer extends Component {
   //   })
   //  }
   iconStatus(faceCheck, nfc, proximity, polling) {
-    if (faceCheck === false && nfc === false) {
+    if (faceCheck === false && nfc === false && proximity === true && polling === true) {
       return "blue-status-icon.png";
-    } else if (faceCheck === false && nfc === false && proximity === false) {
+    } else if (faceCheck === false && nfc === false && proximity === false && polling === true) {
       return "red-status-icon.png";
     } else if (faceCheck === false && nfc === false && proximity === false && polling === false) {
       return "orange-status-icon.png";
@@ -72,18 +72,22 @@ class MapContainer extends Component {
           this.state.currentLocation
         }>
         {
-          this.props.users.map(user => (
-            // const iconStatus = user.compliant.face_check
-            // const iconStatus1 = user.compliant.nfc;
-            <Marker
+          this.props.users.map((user) => {
+            const iconStatus = user.compliant.face_check
+            const iconStatus1 = user.compliant.nfc;
+            const iconStatus2 = user.compliant.proximity;
+            const iconStatus3 = user.compliant.polling;
+            return (
+              <Marker
               onClick={this.onMarkerClick}
               position={{ lat: user.location.latitude, lng: user.location.longitude }}
               icon={{ 
                 // url: require("../assets/green-status-icon.png")
-                url: require("../assets/red-status-icon.png")
+                url: require("../assets/" + this.iconStatus(iconStatus,iconStatus1,iconStatus2,iconStatus3))
               }}
             />
-          ))
+            )
+          })
         }
         <InfoWindow
           marker={this.state.activeMarker}
