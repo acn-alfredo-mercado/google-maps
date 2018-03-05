@@ -29,6 +29,7 @@ class Users extends Component {
 
     this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
     this.batteryStatus = this.batteryStatus.bind(this);
+    this.wifiConnectionStatus = this.wifiConnectionStatus.bind(this);
   }
 
   capitalizeFirstLetter(string) {
@@ -44,11 +45,19 @@ class Users extends Component {
     }
   }
 
-  connectionStatus() {
+  wifiConnectionStatus() {
     if (this.connectionStatus) {
-      return "connected-icon.png";
+      return <span><img src={require('../assets/connected-icon.png')} />Connected</span>;
     } else {
-      return "not-connected-icon.png";
+      return <span><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>;
+    }
+  }
+
+  verificationStatus() {
+    if (this.faceCheck === false && this.nfc === false) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -98,7 +107,7 @@ class Users extends Component {
                 }
               </div>
               {
-                !this.faceCheck || !this.nfc ?
+                this.verificationStatus() ?
                   <div>
                     <hr />
                     Verification Failed<br />
@@ -108,14 +117,8 @@ class Users extends Component {
                   : ``
               }
               <hr />
-              {
-                this.connectionStatus ?
-                  <span><img src={require('../assets/connected-icon.png')} />Connected</span>
-                  : <span><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>
-              }
-              {
-                <span><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span>
-              }
+              { this.wifiConnectionStatus() }
+              { <span><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span> }
             </div>
           </div>
         </div>
