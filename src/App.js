@@ -15,7 +15,8 @@ class App extends Component {
     this.db = this.app.database().ref('HOUSE_QUARANTINE/DEV/USERS');
 
     this.state = {
-      users: []
+      users: [],
+      devices: []
     }
 
   }
@@ -23,15 +24,29 @@ class App extends Component {
   componentWillMount() {
     this.db.on('value', snapshot => {
       var users = [];
+      var devices = [];
       snapshot.forEach((data) => {
+        var device = data.child('ble_devices').val(); //returns 9 items
         var user = data.val();
+        // if (device !== null) {
+        //   Object.keys(device).forEach(key => {
+        //     // The ID is the key
+        //     console.log(key);
+        //     // The Object is device[key]
+        //     devices.push(device[key]); // returns all 14 devices
+        //     console.log(device[key]);
+        //   });
+        // }
         users.push(user);
+        devices.push(device); //returns 9 items
       })
 
       this.setState({
-        users: users
+        users: users,
+        devices: devices
       });
       console.log(this.state.users);
+      console.log(this.state.devices);
 
     });
   }
@@ -43,16 +58,19 @@ class App extends Component {
           <MapContainer {...this.state} />
         </div>
         <div className="users">
-          <h4>Cases</h4>
+          <h5>Cases</h5>
           {
             this.state.users.map((user) => {
               return (
                 <div className="userList">
                   <Users
+                    {...this.state}
                     name={user.name}
                     picture={user.profile.picture}
                     disease={user.profile.disease}
                     delinquent={user.delinquency.delinquent}
+                    timeStamp={user.delinquency.timestamp}
+                    
                     locationName={user.location.location_name}
                     proximity={user.compliant.proximity}
                     faceCheck={user.attempts.face_check}

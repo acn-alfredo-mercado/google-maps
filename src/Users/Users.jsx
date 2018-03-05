@@ -13,6 +13,12 @@ class Users extends Component {
     this.locationName = this.props.locationName;
 
     this.delinquent = this.props.delinquent;
+    this.timeStamp = new Date(this.props.timeStamp * 1000);
+
+    this.deviceProximity = this.props.deviceProximity;
+    this.deviceType = this.props.deviceType;
+    this.deviceTimestamp = this.props.deviceTimestamp;
+
     this.faceCheck = this.props.faceCheck;
     this.nfc = this.props.nfc;
     this.proximity = this.props.proximity;
@@ -24,6 +30,7 @@ class Users extends Component {
 
   render() {
     const isBatteryLow = (this.batteryLevel < 20);
+    const dateString = this.timeStamp.toLocaleTimeString();
     return (
       <div class="row">
         <div class="col-7">
@@ -41,10 +48,23 @@ class Users extends Component {
                 {
                   !this.delinquent ?
                     ``
-                    : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br /></span>
+                    : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br />
+                      {dateString} <br/>
+                    </span>
                 }
-                <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>Wearable</span><br />
-                <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>Device Kit</span><br />
+                {/* {
+                  this.props.devices.map(device => (
+                    Object.keys(device).forEach(element => {
+                      <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type}<br /></span> //returns 14 objects
+                      console.log(device[element])
+                    })
+                  ))
+                } */
+                }
+                {this.props.devices.map(device => {
+                  <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type}<br /></span> //returns 14 objects
+                  })
+                }
                 {
                   !!this.proximity ?
                     <span><i class="material-icons " style={{ color: '#4caf50' }}>place</i>Within Proximity</span>

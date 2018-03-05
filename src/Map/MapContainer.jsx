@@ -56,7 +56,9 @@ class MapContainer extends Component {
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
-          <Users />
+          <div>
+            <h1>Hey</h1>
+          </div>
         </InfoWindow>
       </Map>
     )
