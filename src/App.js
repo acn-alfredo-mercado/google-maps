@@ -75,7 +75,7 @@ class App extends Component {
                     faceCheck={user.attempts.face_check}
                     nfc={user.attempts.nfc}
                     connectionStatus={user.device_status.connection_status}
-                    batteryLevel={user.device_status.battery_level}/>
+                    batteryLevel={user.device_status.battery_level} />
                 </div>
               )
             })

@@ -69,17 +69,17 @@ class MapContainer extends Component {
         {
           this.props.users.map((user) => {
             const isFaceCheck = user.compliant.face_check
-            const isNfc= user.compliant.nfc;
-            const isProximity= user.compliant.proximity;
+            const isNfc = user.compliant.nfc;
+            const isProximity = user.compliant.proximity;
             const isPolling = user.compliant.polling;
             return (
               <Marker
-              onClick={this.onMarkerClick}
-              position={{ lat: user.location.latitude, lng: user.location.longitude }}
-              icon={{ 
-                url: require("../assets/" + this.iconStatus(isFaceCheck,isNfc,isProximity,isPolling))
-              }}
-            />
+                onClick={this.onMarkerClick}
+                position={{ lat: user.location.latitude, lng: user.location.longitude }}
+                icon={{
+                  url: require("../assets/" + this.iconStatus(isFaceCheck, isNfc, isProximity, isPolling))
+                }}
+              />
             )
           })
         }

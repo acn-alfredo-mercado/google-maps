@@ -51,9 +51,8 @@ class Users extends Component {
       return "not-connected-icon.png";
     }
   }
-  
 
-  render() { 
+  render() {
     const dateString = this.timeStamp.toLocaleTimeString();
     const dateDevice = this.timeStamp.toLocaleDateString();
     return (
@@ -74,7 +73,7 @@ class Users extends Component {
                   !this.delinquent ?
                     ``
                     : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br />
-                      {dateString} <br/>
+                      {dateString} <br />
                     </span>
                 }
                 {/* {
@@ -88,8 +87,8 @@ class Users extends Component {
                 {
                   this.props.devices.map((device, index) => (
                     <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type} {index} Not Updating<br />
-                     {dateString} <br/> 
-                    </span>                   
+                      {dateString} <br />
+                    </span>
                   ))
                 }
                 {
@@ -115,7 +114,7 @@ class Users extends Component {
                   : <span><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>
               }
               {
-               <span><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span>
+                <span><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span>
               }
             </div>
           </div>
