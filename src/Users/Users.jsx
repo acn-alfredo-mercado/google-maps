@@ -64,7 +64,9 @@ class Users extends Component {
     if (faceCheck === true && nfc === true && proximity === true && polling === true) {
       return <span><i class="material-icons " style={{ color: '#4caf50' }}>location_on</i>Within Proximity</span>;
     } else if (faceCheck === false && nfc === false && proximity === false && polling === true) {
-      return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity</span>;;
+      return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity</span>;
+    }  else if (faceCheck === false && nfc === false && proximity === true && polling === true) {
+      return <span><i class="material-icons " style={{ color: '#42a5f5' }}>location_on</i>Within Proximity</span>;
     }
   }
 
