@@ -4,9 +4,6 @@ import './Users.css';
 class Users extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      test: []
-    }
 
     this.name = this.props.name;
     this.picture = this.props.picture;
@@ -35,14 +32,9 @@ class Users extends Component {
     this.wifiStrength = this.props.wifiStrength;
 
     // functions
-    this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
     this.batteryStatus = this.batteryStatus.bind(this);
     this.wifiConnectionStatus = this.wifiConnectionStatus.bind(this);
     this.proximityStatus = this.proximityStatus.bind(this);
-  }
-
-  capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   verificationStatus() {
@@ -63,21 +55,21 @@ class Users extends Component {
       return <span><i class="material-icons " style={{ color: '#4caf50' }}>location_on</i>Within Proximity</span>;
     } else if (faceCheck === false && nfc === false && proximity === false && polling === true) {
       return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity</span>;
-    }  else if (faceCheck === false && nfc === false && proximity === true && polling === true) {
+    } else if (faceCheck === false && nfc === false && proximity === true && polling === true) {
       return <span><i class="material-icons " style={{ color: '#42a5f5' }}>location_on</i>Within Proximity</span>;
     }
   }
 
-  wifiConnectionStatus() {
-    if (this.connectionStatus) {
+  wifiConnectionStatus(connectionStatus) {
+    if (connectionStatus) {
       return <span className="iconFooter"><img src={require('../assets/connected-icon.png')} />Connected</span>;
     } else {
       return <span className="iconFooter"><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>;
     }
   }
 
-  batteryStatus() {
-    const isBatteryLow = (this.batteryLevel < 20);
+  batteryStatus(batteryLevel) {
+    const isBatteryLow = (batteryLevel < 20);
     if (isBatteryLow) {
       return "lobatt-icon.png";
     } else {
@@ -88,7 +80,7 @@ class Users extends Component {
   render() {
     const dateString = this.timeStamp.toLocaleTimeString();
     const dateDevice = this.timeStamp.toLocaleDateString();
-    
+
     return (
       <div class="row">
         <div class="col-7">
@@ -114,9 +106,9 @@ class Users extends Component {
                   Object.keys(this.deviceType).map((key, index) => {
                     return (
                       this.deviceType[key].proximity ? `` :
-                      <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
-                        {this.capitalizeFirstLetter(this.deviceType[key].type)} Not Updating<br/>
-                      </span>
+                        <span class="capitalize"><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
+                          {this.deviceType[key].type} Not Updating<br />
+                        </span>
                     )
                   })
                 }
@@ -126,7 +118,7 @@ class Users extends Component {
                 this.verificationStatus()
               }
               <hr />
-              {this.wifiConnectionStatus()}
+              {this.wifiConnectionStatus(this.connectionStatus)}
               {<span className="iconFooter"><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span>}
             </div>
           </div>
