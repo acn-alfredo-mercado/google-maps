@@ -18,47 +18,25 @@ class UserInfo extends Component {
                 <div class="card-content white-text">
                 <div>
                     <div class="content">
-                    <img src={this.picture} />
-                    <p className="title">asdasdsa<br /></p>
-                    <p className="subtitle">asdasdsa, asdasdasd</p>
+                    <img src={this.props.user.profile.picture} />
+                    <p className="title">{this.props.user.name}<br /></p>
+                    <p className="subtitle">{this.props.user.profile.disease}, {this.props.user.location.location_name}</p>
                     </div>
                 </div>
                 <div>
-                <hr />
-                    <tr>
-                        <td><span>NRIC</span></td>
-                        <td><span>insert NRIC here</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>Address</span></td>
-                        <td><span>insert Address here</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>Contact</span></td>
-                        <td><span>insert Contact here</span></td>
-                    </tr>
+                <hr/>
+                    <span className="title">{this.props.user.profile.NRIC}<br /></span>
+                    <span className="title">{this.props.user.profile.address}<br /></span>
+                    <span className="title">{this.props.user.profile.contact}<br /></span>
+                    <hr />
+                {
+                    !this.props.user.delinquency.delinquent ?
+                    ``
+                    : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br />
+                    </span>
+                }
                 </div>
                 <hr />
-                <tr rowspan="8">
-                    <td>Status</td>
-                    <td><span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status</span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><span className="iconFooter"><img src={require('../assets/green-status-icon.png')} />123%</span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><span className="iconFooter"><img src={require('../assets/green-status-icon.png')} />123%</span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><span className="iconFooter"><img src={require('../assets/green-status-icon.png')} />123%</span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><span className="iconFooter"><img src={require('../assets/green-status-icon.png')} />123%</span></td>
-                </tr>
                 </div>
             </div>
             </div>

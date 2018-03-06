@@ -16,6 +16,7 @@ class App extends Component {
 
     this.state = {
       users: [],
+      user: [],
       showingInfoWindow: false
     }
 
@@ -40,7 +41,8 @@ class App extends Component {
   getDetails(user) {
     console.log('userlist ' + user.name);
     this.setState({
-      showingInfoWindow: true
+      showingInfoWindow: true,
+      user: user
     })
   }
 
@@ -53,7 +55,7 @@ class App extends Component {
         {
           !this.state.showingInfoWindow ? `` :
           <div className="over_map">
-            <UserInfo {...this.state}/>
+            <UserInfo {...this.state} />
           </div>
         }       
         <div className="users">
