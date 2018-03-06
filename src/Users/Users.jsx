@@ -39,8 +39,6 @@ class Users extends Component {
     this.batteryStatus = this.batteryStatus.bind(this);
     this.wifiConnectionStatus = this.wifiConnectionStatus.bind(this);
     this.proximityStatus = this.proximityStatus.bind(this);
-    this.bleDeviceType = this.bleDeviceType.bind(this);
-
   }
 
   capitalizeFirstLetter(string) {
@@ -87,19 +85,6 @@ class Users extends Component {
     }
   }
 
-  bleDeviceType() {
-    var hello = [];
-      Object.keys(this.deviceType).forEach(key => {
-      // console.log(this.deviceType[key].proximity)
-      if (this.deviceType[key].proximity === false) {
-        hello = <span>{this.deviceType[key].type}</span>
-      }
-    })
-    this.setState({
-      test: hello
-    })
-  }
-
   render() {
     const dateString = this.timeStamp.toLocaleTimeString();
     const dateDevice = this.timeStamp.toLocaleDateString();
@@ -125,23 +110,16 @@ class Users extends Component {
                       {dateString} <br />
                     </span>
                 }
-                {/* {
-                  this.props.devices.map(device => (
-                    Object.keys(device).forEach(element => {
-                      <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type}<br /></span> //returns 14 objects
-                      console.log(device[element])
-                    })
-                  ))
-                }  */}
-                {/* {
-                  this.props.devices.map((device, index) => (
-                    <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>{device.type} {index} Not Updating<br />
-                      {dateString} <br />
-                    </span>
-                  ))
-                } */}
-                {console.log(this.deviceType)}
-                
+                {
+                  Object.keys(this.deviceType).map((key, index) => {
+                    return (
+                      this.deviceType[key].proximity ? `` :
+                      <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
+                        {this.capitalizeFirstLetter(this.deviceType[key].type)} Not Updating<br/>
+                      </span>
+                    )
+                  })
+                }
                 {this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling)}
               </div>
               {

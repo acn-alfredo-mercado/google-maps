@@ -26,27 +26,15 @@ class App extends Component {
       var users = [];
       var devices = [];
       snapshot.forEach((data) => {
-        var device = data.child('ble_devices').val(); //returns 9 items
         var user = data.val();
-        if (device !== null) {
-          Object.keys(device).forEach(key => {
-            // The ID is the key
-            // console.log(key); // returns all 14 key / id
-            // The Object is device[key]
-            // devices.push(device[key]); // returns all 14 devices
-            // console.log(device[key]);
-          });
-        }
         users.push(user);
-        devices.push(device); //returns 9 items
       })
 
       this.setState({
         users: users,
         devices: devices
       });
-      console.log(this.state.users);
-      console.log(this.state.devices);
+      // console.log(this.state.users);
 
     });
   }
@@ -62,8 +50,10 @@ class App extends Component {
           {
             this.state.users.map((user, index) => {
               return (
-                <div className="userList" key={index}>
+                <div className="userList" >
                   <Users
+                    key={index}
+                    {...this.state}
                     name={user.name}
                     picture={user.profile.picture}
                     disease={user.profile.disease}
