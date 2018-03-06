@@ -108,6 +108,7 @@ class Users extends Component {
                       this.deviceType[key].proximity ? `` :
                         <span class="capitalize"><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
                           {this.deviceType[key].type} Not Updating<br />
+                          {dateString} <br/>
                         </span>
                     )
                   })

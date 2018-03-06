@@ -16,27 +16,32 @@ class App extends Component {
 
     this.state = {
       users: [],
-      devices: []
+      showingInfoWindow: false
     }
+
+    this.getDetails = this.getDetails.bind(this);
 
   }
 
   componentWillMount() {
     this.db.on('value', snapshot => {
       var users = [];
-      var devices = [];
       snapshot.forEach((data) => {
         var user = data.val();
         users.push(user);
       })
 
       this.setState({
-        users: users,
-        devices: devices
+        users: users
       });
-      // console.log(this.state.users);
-
     });
+  }
+
+  getDetails(user) {
+    console.log('userlist ' + user.name);
+    this.setState({
+      showingInfoWindow: true
+    })
   }
 
   render() {
@@ -45,14 +50,21 @@ class App extends Component {
         <div className="map">
           <MapContainer {...this.state} />
         </div>
+        {
+          !this.state.showingInfoWindow ? `` :
+          <div className="over_map">
+            <UserInfo {...this.state}/>
+          </div>
+        }       
         <div className="users">
           <h4>Cases</h4>
           {
             this.state.users.map((user, index) => {
               return (
-                <div className="userList" >
+                <div className="userList" key={index} onClick={() => this.getDetails(user)}>
                   <Users
                     key={index}
+                    data-id={index}
                     {...this.state}
                     name={user.name}
                     picture={user.profile.picture}

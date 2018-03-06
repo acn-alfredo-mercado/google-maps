@@ -2,6 +2,7 @@
     /* border: 4px solid red; */
     overflow: hidden;
     word-wrap: break-word;
+
 }
 
 .content img {
@@ -61,5 +62,15 @@ hr {
 .iconFooter {
     height: 20px !important;
     width: 20px !important;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+tr {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 45px;
 }
 

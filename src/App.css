@@ -8,8 +8,9 @@
 .map {
   height: 100%;
   position:absolute;
-  float: unset;
   width:75%;
+  background-repeat: no-repeat;
+  z-index: 1;
 }
 
 .users {
@@ -36,3 +37,14 @@ h4 {
   cursor: pointer;
   border-radius: 25%;
 }
+
+.over_map { 
+  height: auto;
+  width: 274px;
+  position: absolute;
+  top: 170px;
+  left: 160px; 
+  z-index: 1;
+  background:rgba(1,16,36,0.7);
+}
+
