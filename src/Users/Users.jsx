@@ -4,6 +4,9 @@ import './Users.css';
 class Users extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      test: []
+    }
 
     this.name = this.props.name;
     this.picture = this.props.picture;
@@ -36,10 +39,41 @@ class Users extends Component {
     this.batteryStatus = this.batteryStatus.bind(this);
     this.wifiConnectionStatus = this.wifiConnectionStatus.bind(this);
     this.proximityStatus = this.proximityStatus.bind(this);
+    this.bleDeviceType = this.bleDeviceType.bind(this);
+
   }
 
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  verificationStatus() {
+    if (this.faceCheck === false && this.nfc === false) {
+      return <div>
+        <hr />
+        Verification Failed<br />
+        <span className="verificationIcon"><img src={require('../assets/face-icon.png')} />Face Check Failed<br /></span>
+        <span className="verificationIcon"><img src={require('../assets/nfc-icon.png')} />NFC Check Failed</span>
+      </div>;
+    } else {
+      return false;
+    }
+  }
+
+  proximityStatus(faceCheck, nfc, proximity, polling) {
+    if (faceCheck === true && nfc === true && proximity === true && polling === true) {
+      return <span><i class="material-icons " style={{ color: '#4caf50' }}>location_on</i>Within Proximity</span>;
+    } else if (faceCheck === false && nfc === false && proximity === false && polling === true) {
+      return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity</span>;;
+    }
+  }
+
+  wifiConnectionStatus() {
+    if (this.connectionStatus) {
+      return <span className="iconFooter"><img src={require('../assets/connected-icon.png')} />Connected</span>;
+    } else {
+      return <span className="iconFooter"><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>;
+    }
   }
 
   batteryStatus() {
@@ -51,33 +85,23 @@ class Users extends Component {
     }
   }
 
-  wifiConnectionStatus() {
-    if (this.connectionStatus) {
-      return <span><img src={require('../assets/connected-icon.png')} />Connected</span>;
-    } else {
-      return <span><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>;
-    }
-  }
-
-  verificationStatus() {
-    if (this.faceCheck === false && this.nfc === false) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  proximityStatus(faceCheck, nfc, proximity, polling) {
-    if (faceCheck === true && nfc === true && proximity === true && polling === true) {
-      return <span><i class="material-icons " style={{ color: '#4caf50' }}>location_on</i>Within Proximity</span>;
-    } else if (faceCheck === false && nfc === false && proximity === false && polling === true){
-     return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity</span>;;
-    }
+  bleDeviceType() {
+    var hello = [];
+      Object.keys(this.deviceType).forEach(key => {
+      // console.log(this.deviceType[key].proximity)
+      if (this.deviceType[key].proximity === false) {
+        hello = <span>{this.deviceType[key].type}</span>
+      }
+    })
+    this.setState({
+      test: hello
+    })
   }
 
   render() {
     const dateString = this.timeStamp.toLocaleTimeString();
     const dateDevice = this.timeStamp.toLocaleDateString();
+    
     return (
       <div class="row">
         <div class="col-7">
@@ -114,21 +138,16 @@ class Users extends Component {
                     </span>
                   ))
                 } */}
-              { this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling) }
+                {console.log(this.deviceType)}
+                
+                {this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling)}
               </div>
               {
-                this.verificationStatus() ?
-                  <div>
-                    <hr />
-                    Verification Failed<br />
-                    <span style={{ paddingLeft: '2em' }}><img src={require('../assets/face-icon.png')} />Face Check Failed<br /></span>
-                    <span style={{ paddingLeft: '2em' }}><img src={require('../assets/nfc-icon.png')} />NFC Check Failed</span>
-                  </div>
-                  : ``
+                this.verificationStatus()
               }
               <hr />
-              { this.wifiConnectionStatus() }
-              { <span><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span> }
+              {this.wifiConnectionStatus()}
+              {<span className="iconFooter"><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span>}
             </div>
           </div>
         </div>

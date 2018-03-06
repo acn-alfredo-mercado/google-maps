@@ -31,7 +31,7 @@ class App extends Component {
         if (device !== null) {
           Object.keys(device).forEach(key => {
             // The ID is the key
-            // console.log(key);
+            // console.log(key); // returns all 14 key / id
             // The Object is device[key]
             // devices.push(device[key]); // returns all 14 devices
             // console.log(device[key]);
@@ -64,13 +64,14 @@ class App extends Component {
               return (
                 <div className="userList" key={index}>
                   <Users
-                    {...this.state}
                     name={user.name}
                     picture={user.profile.picture}
                     disease={user.profile.disease}
                     delinquent={user.delinquency.delinquent}
                     timeStamp={user.delinquency.timestamp}
                     locationName={user.location.location_name}
+
+                    deviceType={user.ble_devices}
 
                     proximity={user.compliant.proximity}
                     isFaceCheck={user.compliant.face_check}
