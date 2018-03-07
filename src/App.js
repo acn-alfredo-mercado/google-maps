@@ -60,14 +60,16 @@ class App extends Component {
         <div className="map">
           <MapContainer {...this.state} />
         </div>
-        <div className="over_map">
+        
         {
           !this.state.showingInfoWindow ? `` : 
+          <div className="over_map">
             <UserInfo 
               {...this.state}
               closeWindow={this.closeWindow.bind(this)} />
+          </div>
         } 
-        </div>      
+              
         <div className="users">
           <h4>Cases</h4>
           {

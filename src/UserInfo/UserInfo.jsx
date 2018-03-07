@@ -18,22 +18,23 @@ class UserInfo extends Component {
 
     render() {
         return (
-            <div class="card blue-grey darken-1">
+            <div>
                 <div class="card-content white-text">
                     <div class="content">
                     <span className="closebtn" onClick={() => this.closeUserInfo()}>&times;</span>
                     <img src={this.props.user.profile.picture} />
-                    <p className="title">{this.props.user.name},<br /></p>
-                    <p className="subtitle">{this.props.user.profile.disease}</p>
-                    <p>{this.props.user.location.latitude}, {this.props.user.location.longitude}</p>                    
+                    <p className="title">{this.props.user.name}<br/>
+                        <span className="subtitle">{this.props.user.profile.disease}</span>
+                    </p>
                 </div>
                 <div>
-                <hr/>
+                
                     <span className="title1">NRIC: </span><span className="title2">{this.props.user.profile.NRIC}<br /></span>
                     <span className="title1">Address: </span><span className="title2">{this.props.user.profile.address}<br /></span>
                     <span className="title1">Contact: </span><span className="title2">{this.props.user.profile.contact}<br /></span>
                     <hr />
                     <span className="title1">Status: </span>
+                    <div className="statusDetails">
                 {
                     !this.props.user.delinquency.delinquent ? ``
                     :<span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br /></span>
@@ -48,8 +49,9 @@ class UserInfo extends Component {
                     )
                   })
                 }
+                <hr/>
+                    </div>
                 </div>
-                <hr />
                 </div>
             </div>
         );

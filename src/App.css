@@ -46,5 +46,7 @@ h4 {
   left: 160px; 
   z-index: 1;
   background:rgba(1,16,36,0.7);
+  border-radius: 3%;
+  padding: 10px;
 }
 

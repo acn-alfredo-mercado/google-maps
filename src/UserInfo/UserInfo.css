@@ -34,6 +34,7 @@ span img {
     font-size: 13px;
     overflow: hidden;
     color: #AEB7C2 !important;
+    display: inline;
 }
 
 h4 {
@@ -100,4 +101,8 @@ span.title2 {
     vertical-align: text-top;
     font-size: 15px;
     margin-left: 3%;
+}
+
+.statusDetails {
+    float: right;
 }
