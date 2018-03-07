@@ -42,14 +42,14 @@ class Users extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  verificationStatus() {
-    if (this.faceCheck === false || this.nfc === false) {
+  verificationStatus(faceCheck, nfc) {
+    if (faceCheck === false || nfc === false) {
       return <div>
         <hr />
         Verification Failed<br />
-        {this.faceCheck ? `` :
+        {faceCheck ? `` :
         <span className="verificationIcon"><img src={require('../assets/face-icon.png')} hspace="10" />Face Check Failed<br /></span> }
-        {this.nfc ? `` :
+        {nfc ? `` :
         <span className="verificationIcon"><img src={require('../assets/nfc-icon.png')} hspace="10" />NFC Check Failed</span>}
       </div>;
     } else {
@@ -65,8 +65,7 @@ class Users extends Component {
              <p className="time">Check in required.</p></span>
     } else if (faceCheck === false && nfc === false && proximity === true && polling === true) {
       return <span><i class="material-icons " style={{ color: '#42a5f5' }}>location_on</i>Within Proximity
-              <p className="time">Check in required.</p></span>
-              
+              <p className="time">Check in required.</p></span>      
     }
   }
 
@@ -125,7 +124,7 @@ class Users extends Component {
                 }
                 {this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling)}
               </div>
-              {this.verificationStatus()}
+              {this.verificationStatus(this.faceCheck, this.nfc)}
               <hr />
               {this.wifiConnectionStatus(this.connectionStatus)}
               {<span className="iconFooter"><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} hspace="10" />{this.batteryLevel}%</span>}
