@@ -45,7 +45,6 @@ class App extends Component {
           lng: user.location.longitude        
       }
     })
-    console.log(this.state.userLocation)
   }
 
   closeWindow() {

@@ -13,12 +13,8 @@ class MapContainer extends Component {
       currentLocation: {
         lat: 1.294143,
         lng: 103.853278
-      },
-      currentLocation1: []
+      }
     }
-
-    this.latitude = this.props.latitude;
-    this.longitude = this.props.longitude;
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
@@ -53,18 +49,6 @@ class MapContainer extends Component {
     } else {
       return "green-status-icon.png";
     }
-  }
-
-  getDetails(user) {
-    // this.setState({
-    //   showingInfoWindow: true,
-    //   user: user,
-    //   userLocation: {
-    //       lat: user.location.latitude,
-    //       lng: user.location.longitude        
-    //   }
-    // })
-    // console.log(this.state.userLocation)
   }
 
   render() {
