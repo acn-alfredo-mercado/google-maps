@@ -17,6 +17,7 @@ class App extends Component {
     this.state = {
       users: [],
       user: [],
+      userLocation: {},
       showingInfoWindow: false
     }
   }
@@ -38,8 +39,13 @@ class App extends Component {
   getDetails(user) {
     this.setState({
       showingInfoWindow: true,
-      user: user
+      user: user,
+      userLocation: {
+          lat: user.location.latitude,
+          lng: user.location.longitude        
+      }
     })
+    console.log(this.state.userLocation)
   }
 
   closeWindow() {

@@ -13,7 +13,8 @@ class MapContainer extends Component {
       currentLocation: {
         lat: 1.294143,
         lng: 103.853278
-      }
+      },
+      currentLocation1: []
     }
 
     this.latitude = this.props.latitude;
@@ -29,6 +30,8 @@ class MapContainer extends Component {
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
+      currentLocation: 
+        this.props.userLocation
     });
   }
 
@@ -60,7 +63,8 @@ class MapContainer extends Component {
         zoom={12}
         initialCenter={
           this.state.currentLocation
-        }>
+        }
+        center={this.props.userLocation}>
         {
           this.props.users.map((user) => {
             const isFaceCheck = user.compliant.face_check
@@ -78,13 +82,13 @@ class MapContainer extends Component {
             )
           })
         }
-        <InfoWindow
+        {/* <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
           <div>
             <h1>Hey</h1>
           </div>
-        </InfoWindow>
+        </InfoWindow> */}
       </Map>
     )
   }

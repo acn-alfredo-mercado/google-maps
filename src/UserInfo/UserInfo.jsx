@@ -23,8 +23,9 @@ class UserInfo extends Component {
                     <div class="content">
                     <span className="closebtn" onClick={() => this.closeUserInfo()}>&times;</span>
                     <img src={this.props.user.profile.picture} />
-                    <p className="title">{this.props.user.name}<br /></p>
-                    <p className="subtitle">{this.props.user.profile.disease}</p>                    
+                    <p className="title">{this.props.user.name},<br /></p>
+                    <p className="subtitle">{this.props.user.profile.disease}</p>
+                    <p>{this.props.user.location.latitude}, {this.props.user.location.longitude}</p>                    
                 </div>
                 <div>
                 <hr/>
