@@ -36,7 +36,6 @@ class App extends Component {
   }
 
   getDetails(user) {
-    console.log('userlist ' + user.name);
     this.setState({
       showingInfoWindow: true,
       user: user

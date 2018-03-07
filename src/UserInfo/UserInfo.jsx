@@ -18,23 +18,21 @@ class UserInfo extends Component {
 
     render() {
         return (
-        <div class="row">
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
-                <div>
                     <div class="content">
                     <span className="closebtn" onClick={() => this.closeUserInfo()}>&times;</span>
                     <img src={this.props.user.profile.picture} />
                     <p className="title">{this.props.user.name}<br /></p>
-                    <p className="subtitle">{this.props.user.profile.disease}, {this.props.user.location.location_name}</p>                    
-                    </div>
+                    <p className="subtitle">{this.props.user.profile.disease}</p>                    
                 </div>
                 <div>
                 <hr/>
-                    <span className="title">{this.props.user.profile.NRIC}<br /></span>
-                    <span className="title">{this.props.user.profile.address}<br /></span>
-                    <span className="title">{this.props.user.profile.contact}<br /></span>
+                    <span className="title1">NRIC: </span><span className="title2">{this.props.user.profile.NRIC}<br /></span>
+                    <span className="title1">Address: </span><span className="title2">{this.props.user.profile.address}<br /></span>
+                    <span className="title1">Contact: </span><span className="title2">{this.props.user.profile.contact}<br /></span>
                     <hr />
+                    <span className="title1">Status: </span>
                 {
                     !this.props.user.delinquency.delinquent ? ``
                     :<span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br /></span>
@@ -43,7 +41,7 @@ class UserInfo extends Component {
                   Object.keys(this.props.user.ble_devices).map((key, index) => {
                     return (
                         this.props.user.ble_devices[key].proximity ? `` :
-                        <span class="capitalize"><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
+                        <span><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
                           {this.props.user.ble_devices[key].type} Not Updating<br />
                         </span>
                     )
@@ -53,7 +51,6 @@ class UserInfo extends Component {
                 <hr />
                 </div>
             </div>
-        </div>
         );
     }
 }

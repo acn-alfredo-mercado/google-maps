@@ -42,8 +42,8 @@ class Users extends Component {
       return <div>
         <hr />
         Verification Failed<br />
-        <span className="verificationIcon"><img src={require('../assets/face-icon.png')} />Face Check Failed<br /></span>
-        <span className="verificationIcon"><img src={require('../assets/nfc-icon.png')} />NFC Check Failed</span>
+        <span className="verificationIcon"><img src={require('../assets/face-icon.png')} hspace="10" />Face Check Failed<br /></span>
+        <span className="verificationIcon"><img src={require('../assets/nfc-icon.png')} hspace="10" />NFC Check Failed</span>
       </div>;
     } else {
       return false;
@@ -62,9 +62,9 @@ class Users extends Component {
 
   wifiConnectionStatus(connectionStatus) {
     if (connectionStatus) {
-      return <span className="iconFooter"><img src={require('../assets/connected-icon.png')} />Connected</span>;
+      return <span className="iconFooter"><img src={require('../assets/connected-icon.png')} hspace="10" />Connected</span>;
     } else {
-      return <span className="iconFooter"><img src={require('../assets/not-connected-icon.png')} />Not Connected</span>;
+      return <span className="iconFooter"><img src={require('../assets/not-connected-icon.png')} hspace="10" />Not Connected</span>;
     }
   }
 
@@ -96,30 +96,29 @@ class Users extends Component {
               <div>
                 <hr />
                 {
-                  !this.delinquent ? `` 
-                  : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br />
-                      {dateString} <br />
-                    </span>
+                  !this.delinquent ? `` :
+                    <div>
+                      <p><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status</p>
+                      <p className="time">Last Update {dateString} </p>
+                    </div>
                 }
                 {
                   Object.keys(this.deviceType).map((key, index) => {
                     return (
                       this.deviceType[key].proximity ? `` :
-                        <span class="capitalize"><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
-                          {this.deviceType[key].type} Not Updating<br />
-                          {dateString} <br/>
-                        </span>
+                      <span className="capitalize"><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
+                        {this.deviceType[key].type} Not Updating<br />
+                         <p className="time">Last Update {dateString} </p>
+                      </span>
                     )
                   })
                 }
                 {this.proximityStatus(this.isFaceCheck, this.isNfc, this.proximity, this.isPolling)}
               </div>
-              {
-                this.verificationStatus()
-              }
+              {this.verificationStatus()}
               <hr />
               {this.wifiConnectionStatus(this.connectionStatus)}
-              {<span className="iconFooter"><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} />{this.batteryLevel}%</span>}
+              {<span className="iconFooter"><img src={require('../assets/' + this.batteryStatus(this.batteryLevel))} hspace="10" />{this.batteryLevel}%</span>}
             </div>
           </div>
         </div>
