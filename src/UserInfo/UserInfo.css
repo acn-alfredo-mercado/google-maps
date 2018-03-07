@@ -105,4 +105,11 @@ span.title2 {
 
 .statusDetails {
     float: right;
+    width:200px;
+    height: auto;
 }
+
+.test {
+    float: left;
+}
+

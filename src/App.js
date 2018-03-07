@@ -41,8 +41,8 @@ class App extends Component {
       showingInfoWindow: true,
       user: user,
       userLocation: {
-          lat: user.location.latitude,
-          lng: user.location.longitude        
+        lat: user.location.latitude,
+        lng: user.location.longitude
       }
     })
   }
@@ -59,16 +59,16 @@ class App extends Component {
         <div className="map">
           <MapContainer {...this.state} />
         </div>
-        
+
         {
-          !this.state.showingInfoWindow ? `` : 
-          <div className="over_map">
-            <UserInfo 
-              {...this.state}
-              closeWindow={this.closeWindow.bind(this)} />
-          </div>
-        } 
-              
+          !this.state.showingInfoWindow ? `` :
+            <div className="over_map">
+              <UserInfo
+                {...this.state}
+                closeWindow={this.closeWindow.bind(this)} />
+            </div>
+        }
+
         <div className="users">
           <h4>Cases</h4>
           {

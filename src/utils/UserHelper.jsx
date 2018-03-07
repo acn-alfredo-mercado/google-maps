@@ -7,11 +7,11 @@ class UserHelper extends Component {
 
     checkDelinquent(delinquent) {
         return !delinquent ? `` :
-          <div>
-            <p><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status</p><br/>
-            <span className="time">Last update  </span>
-          </div>
-      }
+            <div>
+                <p><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status</p><br />
+                <span className="time">Last update  </span>
+            </div>
+    }
 
     verificationStatus(faceCheck, nfc) {
         if (faceCheck === false || nfc === false) {

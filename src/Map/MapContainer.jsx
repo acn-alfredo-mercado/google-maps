@@ -25,7 +25,7 @@ class MapContainer extends Component {
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
-      currentLocation: 
+      currentLocation:
         this.props.userLocation
     });
   }
