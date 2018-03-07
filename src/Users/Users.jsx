@@ -32,18 +32,25 @@ class Users extends Component {
     this.wifiStrength = this.props.wifiStrength;
 
     // functions
+    this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
     this.batteryStatus = this.batteryStatus.bind(this);
     this.wifiConnectionStatus = this.wifiConnectionStatus.bind(this);
     this.proximityStatus = this.proximityStatus.bind(this);
   }
 
+   capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   verificationStatus() {
-    if (this.faceCheck === false && this.nfc === false) {
+    if (this.faceCheck === false || this.nfc === false) {
       return <div>
         <hr />
         Verification Failed<br />
-        <span className="verificationIcon"><img src={require('../assets/face-icon.png')} hspace="10" />Face Check Failed<br /></span>
-        <span className="verificationIcon"><img src={require('../assets/nfc-icon.png')} hspace="10" />NFC Check Failed</span>
+        {this.faceCheck ? `` :
+        <span className="verificationIcon"><img src={require('../assets/face-icon.png')} hspace="10" />Face Check Failed<br /></span> }
+        {this.nfc ? `` :
+        <span className="verificationIcon"><img src={require('../assets/nfc-icon.png')} hspace="10" />NFC Check Failed</span>}
       </div>;
     } else {
       return false;
@@ -54,9 +61,12 @@ class Users extends Component {
     if (faceCheck === true && nfc === true && proximity === true && polling === true) {
       return <span><i class="material-icons " style={{ color: '#4caf50' }}>location_on</i>Within Proximity</span>;
     } else if (faceCheck === false && nfc === false && proximity === false && polling === true) {
-      return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity</span>;
+      return <span><i class="material-icons " style={{ color: '#e34343' }}>location_off</i>Outside Proximity
+             <p className="time">Check in required.</p></span>
     } else if (faceCheck === false && nfc === false && proximity === true && polling === true) {
-      return <span><i class="material-icons " style={{ color: '#42a5f5' }}>location_on</i>Within Proximity</span>;
+      return <span><i class="material-icons " style={{ color: '#42a5f5' }}>location_on</i>Within Proximity
+              <p className="time">Check in required.</p></span>
+              
     }
   }
 
@@ -99,16 +109,16 @@ class Users extends Component {
                   !this.delinquent ? `` :
                     <div>
                       <p><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status</p>
-                      <p className="time">Last Update {dateString} </p>
+                      <p className="time">Last update {dateString} </p>
                     </div>
                 }
                 {
                   Object.keys(this.deviceType).map((key, index) => {
                     return (
-                      this.deviceType[key].proximity ? `` :
+                      (this.deviceType[key].proximity || this.isPolling) ? `` :
                       <span className="capitalize"><i class="material-icons" style={{ color: '#f8bd0d' }}>warning</i>
-                        {this.deviceType[key].type} Not Updating<br />
-                         <p className="time">Last Update {dateString} </p>
+                        {this.capitalizeFirstLetter(this.deviceType[key].type)} Not Updating<br />
+                         <p className="time">Last update {dateString} </p>
                       </span>
                     )
                   })
