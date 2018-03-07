@@ -19,9 +19,6 @@ class App extends Component {
       user: [],
       showingInfoWindow: false
     }
-
-    this.getDetails = this.getDetails.bind(this);
-
   }
 
   componentWillMount() {
@@ -46,18 +43,26 @@ class App extends Component {
     })
   }
 
+  closeWindow() {
+    this.setState({
+      showingInfoWindow: false
+    })
+  }
+
   render() {
     return (
       <div className="wrapper">
         <div className="map">
           <MapContainer {...this.state} />
         </div>
+        <div className="over_map">
         {
-          !this.state.showingInfoWindow ? `` :
-          <div className="over_map">
-            <UserInfo {...this.state} />
-          </div>
-        }       
+          !this.state.showingInfoWindow ? `` : 
+            <UserInfo 
+              {...this.state}
+              closeWindow={this.closeWindow.bind(this)} />
+        } 
+        </div>      
         <div className="users">
           <h4>Cases</h4>
           {

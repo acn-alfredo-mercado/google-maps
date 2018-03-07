@@ -29,12 +29,7 @@ class MapContainer extends Component {
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
-      currentLocation: {
-        lat: 3.294143,
-        lng: 103.853278
-      }
     });
-    console.log(this.state.currentLocation)
   }
 
   onMapClicked(props) {
@@ -83,13 +78,13 @@ class MapContainer extends Component {
             )
           })
         }
-        {/* <InfoWindow
+        <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
           <div>
             <h1>Hey</h1>
           </div>
-        </InfoWindow> */}
+        </InfoWindow>
       </Map>
     )
   }

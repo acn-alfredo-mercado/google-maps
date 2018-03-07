@@ -96,9 +96,8 @@ class Users extends Component {
               <div>
                 <hr />
                 {
-                  !this.delinquent ?
-                    ``
-                    : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br />
+                  !this.delinquent ? `` 
+                  : <span><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status <br />
                       {dateString} <br />
                     </span>
                 }

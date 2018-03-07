@@ -22,6 +22,10 @@
 span img {
     height: 20px !important;
     width: 20px !important;
+    position: relative;
+    top: 5px;
+    left: 5px;
+
 }
 
 .title {
@@ -67,3 +71,9 @@ hr {
     text-transform: capitalize;
 }
 
+i {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    padding-right: 10px;
+}
