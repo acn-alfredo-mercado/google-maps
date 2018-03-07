@@ -30,15 +30,9 @@ class Users extends Component {
     this.batteryLevel = this.props.batteryLevel;
     this.connectionStatus = this.props.connectionStatus;
     this.wifiStrength = this.props.wifiStrength;
-
-    // functions
-    this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
-    this.batteryStatus = this.batteryStatus.bind(this);
-    this.wifiConnectionStatus = this.wifiConnectionStatus.bind(this);
-    this.proximityStatus = this.proximityStatus.bind(this);
   }
 
-   capitalizeFirstLetter(string) {
+  capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
@@ -103,7 +97,6 @@ class Users extends Component {
                 </div>
               </div>
               <div>
-                <hr />
                 {
                   !this.delinquent ? `` :
                     <div>

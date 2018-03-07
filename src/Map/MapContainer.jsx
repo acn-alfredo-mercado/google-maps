@@ -22,7 +22,6 @@ class MapContainer extends Component {
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
-    this.iconStatus = this.iconStatus.bind(this);
   }
 
   onMarkerClick(props, marker, e) {
@@ -54,6 +53,18 @@ class MapContainer extends Component {
     } else {
       return "green-status-icon.png";
     }
+  }
+
+  getDetails(user) {
+    // this.setState({
+    //   showingInfoWindow: true,
+    //   user: user,
+    //   userLocation: {
+    //       lat: user.location.latitude,
+    //       lng: user.location.longitude        
+    //   }
+    // })
+    // console.log(this.state.userLocation)
   }
 
   render() {

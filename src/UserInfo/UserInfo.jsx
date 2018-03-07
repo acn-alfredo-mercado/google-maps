@@ -72,7 +72,7 @@ class UserInfo extends Component {
                     </p>
                 </div>
                 <div>
-                
+                <hr/>
                     <span className="title1">NRIC: </span><span className="title2">{this.props.user.profile.NRIC}<br /></span>
                     <span className="title1">Address: </span><span className="title2">{this.props.user.profile.address}<br /></span>
                     <span className="title1">Contact: </span><span className="title2">{this.props.user.profile.contact}<br /></span>
