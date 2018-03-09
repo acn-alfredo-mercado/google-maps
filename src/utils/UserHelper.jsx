@@ -5,11 +5,11 @@ class UserHelper extends Component {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    checkDelinquent(delinquent) {
+    checkDelinquent(delinquent, dateString) {
         return !delinquent ? `` :
             <div>
                 <p><i class="material-icons" style={{ color: '#e34343' }}>warning</i>Delinquent Status</p><br />
-                <span className="time">Last update  </span>
+                <span className="time">Last update  {dateString}</span>
             </div>
     }
 

@@ -18,6 +18,7 @@ class MapContainer extends Component {
 
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
+    this.test = this.test.bind(this);
   }
 
   onMarkerClick(props, marker, e) {
@@ -28,6 +29,15 @@ class MapContainer extends Component {
       currentLocation:
         this.props.userLocation
     });
+  }
+
+  openUserWindow() {
+    this.props.getDetails(this.state.user);  
+  }
+
+  test() {
+    // this.openUserWindow();
+    this.onMarkerClick();
   }
 
   onMapClicked(props) {
@@ -68,7 +78,7 @@ class MapContainer extends Component {
             const isPolling = user.compliant.polling;
             return (
               <Marker
-                onClick={this.onMarkerClick}
+                onClick={this.test}
                 position={{ lat: user.location.latitude, lng: user.location.longitude }}
                 icon={{
                   url: require("../assets/" + this.iconStatus(isFaceCheck, isNfc, isProximity, isPolling))

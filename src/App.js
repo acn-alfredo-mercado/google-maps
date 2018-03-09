@@ -65,7 +65,8 @@ class App extends Component {
             <div className="over_map">
               <UserInfo
                 {...this.state}
-                closeWindow={this.closeWindow.bind(this)} />
+                closeWindow={this.closeWindow.bind(this)}
+                getDetails={this.getDetails.bind(this, this.state.user)} />
             </div>
         }
 

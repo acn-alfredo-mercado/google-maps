@@ -31,11 +31,11 @@ class UserInfo extends Component {
                     </div>
                     <hr />
                     <span className="title1">NRIC: </span><span className="title2">{this.props.user.profile.NRIC}<br /></span>
-                    <span className="title1">Address: </span><span className="title2">{this.props.user.profile.address}<br /></span>
-                    <span className="title1">Contact: </span><span className="title2">{this.props.user.profile.contact}<br /></span>
+                    <span className="title1">ADDRESS: </span><span className="title2">{this.props.user.profile.address}<br /></span>
+                    <span className="title1">CONTACT: </span><span className="title2">{this.props.user.profile.contact}<br /></span>
                     <hr />
                     {/* <span className="title1">Status: </span> */}
-                    <div className="test"><span className="title1">Status: </span></div>
+                    <div className="test"><span className="title1">STATUS: </span></div>
                     <div className="statusDetails">
                         {
                             !this.props.user.delinquency.delinquent ? ``
